@@ -8,6 +8,8 @@ _TRADINGAGENTS_HOME = os.path.join(os.path.expanduser("~"), ".tradingagents")
 # of the existing default, so users can keep writing plain strings in
 # their .env file.
 _ENV_OVERRIDES = {
+    "TRADINGAGENTS_CODEX_COMMAND":       "codex_command",
+    "TRADINGAGENTS_CODEX_TIMEOUT":       "codex_timeout",
     "TRADINGAGENTS_LLM_PROVIDER":         "llm_provider",
     "TRADINGAGENTS_DEEP_THINK_LLM":       "deep_think_llm",
     "TRADINGAGENTS_QUICK_THINK_LLM":      "quick_think_llm",
@@ -98,6 +100,8 @@ def build_default_config() -> dict:
         # provider-specific URL here would leak (e.g. OpenAI's /v1 was previously
         # being forwarded to Gemini, producing malformed request URLs).
         "backend_url": None,
+        "codex_command": "codex",
+        "codex_timeout": 300.0,
         # A tier may name its own provider and endpoint (#1440): the quick tier serves
         # the analysts, researchers, debaters and trader, the deep tier the managers.
         # None means the tier uses llm_provider and backend_url.

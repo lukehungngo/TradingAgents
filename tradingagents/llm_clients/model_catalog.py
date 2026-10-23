@@ -223,6 +223,10 @@ MODEL_OPTIONS: ProviderModeOptions = {
     "bedrock": _CUSTOM_ONLY,
     # The plan's models are listed live from OpenAI once signed in.
     "chatgpt": _CUSTOM_ONLY,
+    "codex": {
+        "quick": [("Use Codex CLI default model", "default"), ("Custom model ID", "custom")],
+        "deep": [("Use Codex CLI default model", "default"), ("Custom model ID", "custom")],
+    },
 }
 
 

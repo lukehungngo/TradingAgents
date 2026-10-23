@@ -30,6 +30,10 @@ def create_llm_client(
     """
     provider_lower = provider.lower()
 
+    if provider_lower == "codex":
+        from .codex_client import CodexClient
+        return CodexClient(model, base_url, **kwargs)
+
     # Native (non-OpenAI) APIs are matched first so their string check doesn't
     # import the OpenAI client. Everything else is OpenAI-compatible and routes
     # through the provider registry (single source of truth).
@@ -88,13 +92,18 @@ def _coerce_max_tokens(value):
 
 
 # Providers that take OpenAI's ``openai_reasoning_effort``.
-REASONING_EFFORT_PROVIDERS = ("openai", "chatgpt")
+REASONING_EFFORT_PROVIDERS = ("openai", "chatgpt", "codex")
 
 
 def build_llm_kwargs(config: dict) -> dict[str, Any]:
     """Keyword arguments for ``create_llm_client`` from a TradingAgents config."""
     kwargs = {}
     provider = config.get("llm_provider", "").lower()
+
+    if provider == "codex":
+        for key in ("codex_command", "codex_timeout"):
+            if config.get(key) is not None:
+                kwargs[key] = config[key]
 
     if provider == "google":
         thinking_level = config.get("google_thinking_level")

@@ -29,6 +29,14 @@
 
 # TradingAgents: Multi-Agents LLM Financial Trading Framework
 
+## Codex CLI provider (this branch)
+
+Run the agents through your existing Codex ChatGPT login using
+`TRADINGAGENTS_LLM_PROVIDER=codex`, without an LLM API key.
+See [setup and usage](docs/CODEX.md) and [.env.codex.example](.env.codex.example).
+The bridge implements application tool calling and structured agent decisions.
+**Experimental: live end-to-end execution is not yet verified; offline bridge tests pass.**
+
 ## News
 
 <!-- news:start -->
