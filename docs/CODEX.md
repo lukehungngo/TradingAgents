@@ -109,6 +109,10 @@ thử tối giản cũng không trả lời. Không coi `codex login status` ho�
 lập là bằng chứng inference thành công.
 
 Mẫu cấu hình đặt timeout **1.800 giây cho mỗi lần gọi model**, không phải cho
-cả lượt phân tích. Việc tăng timeout chưa được chứng minh khắc phục lỗi.
+cả lượt phân tích. Lần kiểm tra ngày 2026-10-23 đã theo dõi đủ 30 phút: cả ba kỳ hạn BTC
+1d, 7d và 30d đều kết thúc với `TimeoutError` ở lời gọi model đầu tiên
+(`Codex CLI exceeded 1800s; no API fallback was used.`). Tăng timeout không
+khắc phục được lỗi trong môi trường thử nghiệm này; chưa xác định nguyên nhân
+gốc và chưa có báo cáo BTC để đánh giá.
 Trước khi chạy bài phân tích dài, kiểm tra một prompt thực tế bằng Codex CLI
 trên máy đã đăng nhập của bạn. Không tự chuyển sang API key khi Codex lỗi.
